@@ -23,4 +23,4 @@ jobs:
         path: "./otus-homeworks/"
 
     - name: Run tests
-      run: bash ../../run.sh
+      run: bash run.sh
