@@ -10,3 +10,4 @@ if [ $? -eq 0 ]; then
   echo "mongodb installed"
 else
   echo "FAILED mongodb install"
+fi
