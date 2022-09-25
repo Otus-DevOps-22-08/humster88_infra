@@ -1,0 +1,55 @@
+#cloud-config
+users:
+  - default
+  - name: yc-user
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC02+WUtq/j3cZexHxxnebjELIrsOjBh7v256B7b8GjpuxcbxFnQhBry75XoqeJ2/bOgablxp9s2gbo1+mD1pS8MhISnaJbPrXrr+ZuxvXCx/YZs8nuvBqFthKvqQzg9NGKyePpbEg3xBkgmVdK5x7jRjpDdkX0J1e6XlVbXaBA+oIERAVUZU/MGnmwVsuSCdUYyzDAiEMLEEfLL+qiXSCNjwugFH0tzcPVY/yP8tHfRQSZSWFankL0IA6lYKgF3UgQltmaeUVub6mdDFnQZgcFrRnUhBizm3hb49ZSlDVkBDsE+USBOofa0wpxG7Rdyq2ztGatrVH9zJspgZ6O+NTJR+GRYLEC+iAAzpwpd0bAkU6GnaVwNh/f13rrEfeFycOb2SyvPlbzXEQFVkInsVRAKb/gAXh093RNwnBEjKVZQiNQyxcYuHnOb3vUKy3DzKa5nGIMjjtHa8g6Nx+y3gXsPOSOgge8d2Cd/fjIyl/i4rs6DwrpZHi8GsCYrM7Ekes= root@vm
+
+write_files:
+- content: |
+    #!/bin/bash
+    sudo apt update
+    sudo apt install -y ruby-full ruby-bundler build-essential
+    ruby -v
+    ruby_v=$?
+    bundler -v
+    bundler_v=$?
+    if [[ "$ruby_v" -eq 0 ]] && [[ "$bundler_v" -eq 0 ]]; then
+      echo "ruby installed"
+    else
+      echo "FAILED ruby install"
+    fi
+  path: /home/yc-user/install_ruby.sh
+  permissions: '0777'
+- content: |
+    #!/bin/bash
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+    sudo apt update
+    sudo apt install -y mongodb-org
+    sudo systemctl start mongod
+    sudo systemctl enable mongod
+    sudo systemctl status mongod
+    if [ $? -eq 0 ]; then
+      echo "mongodb installed"
+    else
+      echo "FAILED mongodb install"
+    fi
+  path: /home/yc-user/install_mongodb.sh
+  permissions: '0777'
+- content: |
+    #!/bin/bash
+    sudo apt install -y git
+    git clone -b monolith https://github.com/express42/reddit.git
+    cd reddit && bundle install
+    puma -d
+  path: /home/yc-user/deploy.sh
+  permissions: '0777'
+
+runcmd:
+ - cd /home/yc-user/
+ - ./install_ruby.sh
+ - ./install_mongodb.sh
+ - ./deploy.sh
