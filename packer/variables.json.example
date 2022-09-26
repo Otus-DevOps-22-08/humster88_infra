@@ -2,14 +2,14 @@
   "service_account_key_file": "./key.json",
   "service_account_id": "1q1q1q1q1qq1q13e3e3e",
   "image_labels": "image:label",
-  "zone": "zone",
-  "folder_id": "123456qwerty",
-  "image_name": "image-{{timestamp}}",
-  "source_image_family": "source_image_family",
-  "image_family": "image-family",
-  "ssh_username": "user",
-  "platform_id": "instance-type",
+  "zone": "ru-central1-a",
+  "folder_id": "1q1q1q1qq1q1q",
+  "image_name": "reddit-base-{{timestamp}}",
+  "source_image_family": "ubuntu-1604-lts",
+  "image_family": "reddit-base",
+  "ssh_username": "ubuntu",
+  "platform_id": "standard-v1",
   "use_ipv4_nat": "true",
-  "ruby": "ruby_script_path",
-  "mongo": "mongo_script_path"
+  "ruby": "scripts/install_ruby.sh",
+  "mongo": "scripts/install_mongodb.sh"
 }
