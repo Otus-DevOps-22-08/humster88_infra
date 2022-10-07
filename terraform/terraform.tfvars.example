@@ -1,0 +1,9 @@
+cloud_id  = "cloudid"
+folder_id = "folderid"
+#zone = "ru-central1-a"
+cnt = 2
+image_id                 = "imageid"
+public_key_path          = "~/.ssh/id_rsa.pub"
+private_key_path         = "~/.ssh/id_rsa"
+subnet_id                = "subnetid"
+service_account_key_file = "~/key.json"
