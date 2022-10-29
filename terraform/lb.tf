@@ -1,12 +1,23 @@
+locals {
+  instance_internal_ip = yandex_compute_instance.app.*.network_interface.0.ip_address
+}
+
 resource "yandex_lb_target_group" "app" {
   name      = "app"
-  target {
-    subnet_id = var.subnet_id
-    address   = "${yandex_compute_instance.app.0.network_interface.0.ip_address}"
-  }
-  target {
-    subnet_id = var.subnet_id
-    address   = "${yandex_compute_instance.app.1.network_interface.0.ip_address}"
+#  target {
+#    subnet_id = var.subnet_id
+#    address   = "${yandex_compute_instance.app.0.network_interface.0.ip_address}"
+#  }
+#  target {
+#    subnet_id = var.subnet_id
+#    address   = "${yandex_compute_instance.app.1.network_interface.0.ip_address}"
+#  }
+  dynamic "target" {
+    for_each = local.instance_internal_ip
+    content {
+      subnet_id = var.subnet_id
+      address   = target.value
+    }
   }
 }
 
