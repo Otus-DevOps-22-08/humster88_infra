@@ -10,7 +10,7 @@ variable zone {
   default = "ru-central1-a"
 }
 variable cnt {
-  type = number
+  type        = number
   description = "Count of instances"
   # Значение по умолчанию
   default = 1
@@ -31,4 +31,20 @@ variable subnet_id {
 }
 variable service_account_key_file {
   description = "key .json"
+}
+variable app_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-app-base"
+}
+variable db_disk_image {
+  description = "Disk image for reddit db"
+  default     = "reddit-db-base"
+}
+variable "db_ip" {
+  description = "IP address of the database server"
+  default = "127.0.0.1"
+}
+variable "auto_deploy" {
+  description = "Auto deploy application"
+  type        = bool
 }

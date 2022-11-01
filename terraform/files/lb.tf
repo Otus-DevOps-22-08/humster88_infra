@@ -15,7 +15,7 @@ resource "yandex_lb_target_group" "app" {
   dynamic "target" {
     for_each = local.instance_internal_ip
     content {
-      subnet_id = var.subnet_id
+      subnet_id = yandex_vpc_subnet.app-subnet.id
       address   = target.value
     }
   }
