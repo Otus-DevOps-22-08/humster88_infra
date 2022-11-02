@@ -40,6 +40,12 @@ variable db_disk_image {
   description = "Disk image for reddit db"
   default     = "reddit-db-base"
 }
+variable "bucket_access_key" {
+  description = "bucket_access_key"
+}
+variable "bucket_secret_key" {
+  description = "bucket_secret_key"
+}
 variable "db_ip" {
   description = "IP address of the database server"
   default = "127.0.0.1"
