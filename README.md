@@ -1,7 +1,7 @@
 # humster88_infra
 humster88 Infra repository
 
-Bastion homework:
+BASTION HOMEWORK:
 
 bastion_IP = 51.250.70.201
 someinternalhost_IP = 10.128.0.10
@@ -21,7 +21,7 @@ Host someinternalhost
 4. Enable Let's Encrypt function for 51-250-70-201.sslip.io domain in pritunl configuration
 
 
-YC homework:
+YC HOMEWORK:
 
 testapp_IP = 84.201.129.152
 testapp_port = 9292
@@ -30,7 +30,7 @@ instance deploy command:
 yc compute instance create --name reddit-app --hostname reddit-app --memory=4 --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --metadata serial-port-enable=1 --metadata-from-file user-data=./startup.yaml
 
 
-Packer homework:
+PACKER HOMEWORK:
 
 1. Написан параметризованный из файла с переменными packer/variables.json шаблон создания наполовину настроенного образа ВМ packer/ubuntu16.json
 2. Написан параметризованный из файла с переменными packer/files/immutable_variables.json шаблон создания полностью настроенного и готового к деплою образа ВМ packer/immutable.json
@@ -50,3 +50,12 @@ TERRAFORM_2 HOMEWORK:
 2. state хранится в yandex object storage bucket
 3. добавлен provisioner
 4. отключаемый provisioner
+
+ANSIBLE_1 HOMEWORK:
+1. установлен ansible
+2. написан инвентарь(ini, yaml, с группами)
+3. написан ansible.cfg
+4. проверена работа модулей ansible
+5. склонированы исходники приложения
+6. протестирована идемпотентность
+7. написан плейбук
