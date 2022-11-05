@@ -7,3 +7,4 @@ packer/yc_yandex.pem
 *.tfvars
 .terraform/
 terraform/.terraform/
+*.retry

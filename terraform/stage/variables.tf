@@ -23,7 +23,10 @@ variable private_key_path {
   # Описание переменной
   description = "Path to the public key used for ssh access"
 }
-variable image_id {
+variable app_image_id {
+  description = "Disk image"
+}
+variable db_image_id {
   description = "Disk image"
 }
 variable subnet_id {
