@@ -1,5 +1,5 @@
 {
-  "service_account_key_file": "../key.json",
+  "service_account_key_file": "../../key.json",
   "service_account_id": "ajeb0luo28qnkal4449u",
   "image_labels": "source:packer",
   "zone": "ru-central1-a",
