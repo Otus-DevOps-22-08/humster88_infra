@@ -6,6 +6,9 @@ output "external_ip_address_app" {
 output "external_ip_address_db" {
   value = module.db.external_ip_address_db
 }
+output "internal_ip_address_db" {
+  value = module.db.internal_ip_address_db
+}
 ##output "external_ip_address_app2" {
 ##  value = yandex_compute_instance.app2.network_interface.0.nat_ip_address
 ##}

@@ -6,7 +6,7 @@
   "folder_id": "b1g663c64v4mhfl81ut0",
   "image_name": "reddit-app-base-{{timestamp}}",
   "source_image_family": "ubuntu-1604-lts",
-  "image_family": "reddit-base",
+  "image_family": "reddit-app-base",
   "ssh_username": "ubuntu",
   "platform_id": "standard-v1",
   "use_ipv4_nat": "true",

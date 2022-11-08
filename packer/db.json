@@ -14,9 +14,9 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "script": "{{user `mongo`}}",
-            "execute_command": "sudo {{.Path}}"
+            "type": "ansible",
+            "playbook_file": "ansible/packer_db.yml",
+            "user": "ubuntu"
         }
     ],
     "sensitive-variables": ["folder_id", "service_account_key_file"]
