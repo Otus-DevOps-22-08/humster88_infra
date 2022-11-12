@@ -39,4 +39,4 @@ jobs:
       run: cd terraform/prod && tflint -f compact; cd ../..
 
     - name: Run ansible-lint
-      run: ansible-lint ansible/playbooks/*
+      run: apt install ansible-lint && ansible-lint ansible/playbooks/*
