@@ -39,4 +39,4 @@ jobs:
       run: cd terraform/prod && tflint -f compact; cd ../..
 
     - name: Run ansible-lint
-      run: systemctl stop unattended-upgrades && apt install ansible-lint && ansible-lint ansible/playbooks/*
+      run: pkill apt && apt install ansible-lint && ansible-lint ansible/playbooks/*
