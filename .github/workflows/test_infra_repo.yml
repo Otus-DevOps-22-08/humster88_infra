@@ -22,10 +22,10 @@ jobs:
       run: packer validate -var-file=packer/variables.json.example packer/app.json
 
     - name: terraform validate stage and tflint
-      run: cd terraform/stage && terraform validate; cd ../..
+      run: cd terraform/stage && terraform init && terraform validate; cd ../..
 
     - name: terraform validate prod
-      run: cd terraform/prod && terraform validate; cd ../..
+      run: cd terraform/prod && terraform init && terraform validate; cd ../..
 
     - uses: terraform-linters/setup-tflint@v2
       name: Setup TFLint
