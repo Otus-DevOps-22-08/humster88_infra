@@ -1,6 +1,8 @@
 # humster88_infra
 humster88 Infra repository
 
+![tests for infra repo](https://github.com/Otus-DevOps-22-08/humster88_infra/actions/workflows/test_infra_repo.yml/badge.svg)
+
 BASTION HOMEWORK:
 
 bastion_IP = 51.250.70.201
@@ -67,3 +69,10 @@ ANSIBLE_2 HOMEWORK:
 2. Аналогично один плейбук, но много сценариев
 3. И много плейбуков
 4. Изменим провижн образов Packer на Ansible-плейбуки
+
+ANSIBLE_3 HOMEWORK:
+1. Переносим созданные плейбуки в раздельные роли
+2. Описываем два окружения
+3. Используем коммьюнити роль nginx
+4. Используем Ansible Vault для наших окружений
+5. Настройка TravisCI

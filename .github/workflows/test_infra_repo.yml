@@ -1,0 +1,42 @@
+name: Run tests for infra repo
+
+on:
+  push:
+    branches: main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+
+    - name: packer validate db
+      run: packer validate -var-file=packer/variables.json.example packer/db.json
+
+    - name: packer validate app
+      run: packer validate -var-file=packer/variables.json.example packer/app.json
+
+    - name: terraform validate stage and tflint
+      run: cd terraform/stage && terraform init && terraform validate; cd ../..
+
+    - name: terraform validate prod
+      run: cd terraform/prod && terraform init && terraform validate; cd ../..
+
+    - uses: terraform-linters/setup-tflint@v2
+      name: Setup TFLint
+      with:
+        tflint_version: v0.38.1
+
+    - name: Run TFLint on stage
+      run: cd terraform/stage && tflint -f compact; cd ../..
+
+    - name: Run TFLint on prod
+      run: cd terraform/prod && tflint -f compact; cd ../..
+
+    - name: Run ansible-lint
+      run: sudo apt install ansible-lint && ansible-lint ansible/playbooks/*

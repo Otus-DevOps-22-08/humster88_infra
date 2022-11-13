@@ -8,3 +8,4 @@ packer/yc_yandex.pem
 .terraform/
 terraform/.terraform/
 *.retry
+jdauphant.nginx

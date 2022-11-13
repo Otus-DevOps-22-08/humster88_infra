@@ -1,0 +1,38 @@
+- name: Configure App
+  hosts: app
+  become: true
+
+#  vars:
+#    db_host: 10.128.0.34
+
+  roles:
+    - jdauphant.nginx
+    - app
+
+#  tasks:
+#    - name: Add unit file for Puma
+#      copy:
+#        src: files/puma.service
+#        dest: /etc/systemd/system/puma.service
+#      notify: reload puma
+#    - name: Add config for DB connection
+#      template:
+#        src: templates/db_config.j2
+#        dest: /home/ubuntu/db_config
+#        owner: ubuntu
+#        group: ubuntu
+#    - name: enable puma
+#      systemd:
+#        name: puma
+#        enabled: yes
+#    - name: install git
+#      apt:
+#        name: git
+#        state: present
+
+#  handlers:
+#  - name: reload puma
+#    systemd:
+#      name: puma
+#      state: restarted
+#      daemon_reload: yes
