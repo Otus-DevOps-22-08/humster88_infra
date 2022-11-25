@@ -9,3 +9,10 @@ packer/yc_yandex.pem
 terraform/.terraform/
 *.retry
 jdauphant.nginx
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache

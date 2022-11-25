@@ -2,15 +2,18 @@
 - name: Install Ruby && Bundler
   hosts: all
   become: true
-  tasks:
+  roles:
+    - app
+
+#  tasks:
   # Установим в цикле все зависимости
-  - name: Stop autoupdates
-    systemd:
-      name: unattended-upgrades
-      state: stopped
-  - name: Install ruby and rubygems and required packages
-    apt: "name={{ item }} state=present"
-    with_items:
-      - ruby-full
-      - ruby-bundler
-      - build-essential
+#  - name: Stop autoupdates
+#    systemd:
+#      name: unattended-upgrades
+#      state: stopped
+#  - name: Install ruby and rubygems and required packages
+#    apt: "name={{ item }} state=present"
+#    with_items:
+#      - ruby-full
+#      - ruby-bundler
+#      - build-essential
